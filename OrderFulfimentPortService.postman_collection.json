@@ -1,0 +1,93 @@
+{
+	"info": {
+		"_postman_id": "7ca4772e-04b9-4bbb-bdad-521bd814fe26",
+		"name": "OrderFulfimentPortService",
+		"description": "This is collection for using the OrderFulfilment Port service. It exposes a single endpoint, confirmDelivery. The confirm delivery method is invoked by the Order Management Service.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2094618"
+	},
+	"item": [
+		{
+			"name": "confirmDelivery",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <tns:getCountryRequest xmlns=\"http://www.baeldung.com/springsoap/gen\">\n      <tns:name>string</tns:name>\n    </tns:getCountryRequest>\n  </soap:Body>\n</soap:Envelope>\n",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{CountriesPortSoap11BaseUrl}}/ws",
+					"host": [
+						"{{CountriesPortSoap11BaseUrl}}"
+					],
+					"path": [
+						"ws"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "getCountry response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <tns:getCountryRequest xmlns=\"http://www.baeldung.com/springsoap/gen\">\n      <tns:name>string</tns:name>\n    </tns:getCountryRequest>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/ws",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ws"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "xml",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/xml; charset=utf-8"
+						}
+					],
+					"cookie": [],
+					"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <tns:getCountryResponse xmlns=\"http://www.baeldung.com/springsoap/gen\">\n      <tns:country>\n        <tns:name>string</tns:name>\n        <tns:population>100</tns:population>\n        <tns:capital>string</tns:capital>\n        <tns:currency>GBP</tns:currency>\n      </tns:country>\n    </tns:getCountryResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "CountriesPortSoap11BaseUrl",
+			"value": "http://localhost:8080",
+			"type": "any"
+		}
+	]
+}
