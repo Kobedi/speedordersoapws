@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.zadscience.com/springsoap/gen"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.zadscience.com/springsoap/gen" targetNamespace="http://www.zadscience.com/springsoap/gen">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.zadscience.com/springsoap/gen">
+
+            <xs:element name="confirmDeliveryRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="getDeliveryResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="deliveryConfirmation" type="tns:deliveryConfirmation"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:complexType name="deliveryConfirmation">
+                <xs:sequence>
+                    <xs:element name="trackingNumber" type="xs:string"/>
+                    <xs:element name="estimatedDeliveryDate" type="xs:dateTime"/>
+                    <xs:element name="order" minOccurs="1" type="tns:order"/>
+                    <xs:element name="shipper" minOccurs="0" type="tns:shipper"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="order">
+                <xs:sequence>
+                    <xs:element name="orderNumber" type="xs:string"/>
+                    <xs:element name="orderDate" type="xs:dateTime"/>
+                    <xs:element name="product" minOccurs="1" type="tns:product"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:complexType name="shipper">
+                <xs:sequence>
+                    <xs:element name="trackingNumber" type="xs:string"/>
+                    <xs:element name="shippingDate" type="xs:dateTime"/>
+                </xs:sequence>
+            </xs:complexType>
+
+
+            <xs:complexType name="product">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="description" type="xs:string"/>
+                    <xs:element name="type" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="getDeliveryResponse">
+        <wsdl:part element="tns:getDeliveryResponse" name="getDeliveryResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="confirmDeliveryRequest">
+        <wsdl:part element="tns:confirmDeliveryRequest" name="confirmDeliveryRequest">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:portType name="OrderFulfilmentPort">
+        <wsdl:operation name="confirmDelivery">
+            <wsdl:input message="tns:confirmDeliveryRequest" name="confirmDeliveryRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getDeliveryResponse" name="getDeliveryResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="OrderFulfilmentPortSoap11" type="tns:OrderFulfilmentPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="confirmDelivery">
+            <soap:operation soapAction="" />
+            <wsdl:input name="confirmDeliveryRequest">
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output name="getDeliveryResponse">
+                <soap:body use="literal" />
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OrderFulfilmentPortService">
+        <wsdl:port binding="tns:OrderFulfilmentPortSoap11" name="OrderFulfilmentPortSoap11">
+            <soap:address location="http://localhost:8080/ws" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

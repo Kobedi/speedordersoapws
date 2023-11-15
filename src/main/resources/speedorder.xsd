@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.zadscience.com/springsoap/gen"
+           targetNamespace="http://www.zadscience.com/springsoap/gen" elementFormDefault="qualified">
+
+    <xs:element name="confirmDeliveryRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getDeliveryResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deliveryConfirmation" type="tns:deliveryConfirmation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="deliveryConfirmation">
+        <xs:sequence>
+            <xs:element name="trackingNumber" type="xs:string"/>
+            <xs:element name="estimatedDeliveryDate" type="xs:dateTime"/>
+            <xs:element name="order" minOccurs="1" type="tns:order"/>
+            <xs:element name="shipper" minOccurs="0" type="tns:shipper"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="order">
+        <xs:sequence>
+            <xs:element name="orderNumber" type="xs:string"/>
+            <xs:element name="orderDate" type="xs:dateTime"/>
+            <xs:element name="product" minOccurs="1" type="tns:product"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="shipper">
+        <xs:sequence>
+            <xs:element name="trackingNumber" type="xs:string"/>
+            <xs:element name="shippingDate" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="product">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
