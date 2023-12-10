@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-speedorders
+  labels:
+    app: speedorder-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: speedorder-app
+  template:
+    metadata:
+      labels:
+        app: speedorder-app
+    spec:
+      containers:
+      - name: speedorder
+        image: speedorder
+        ports:
+        - containerPort: 80

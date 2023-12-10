@@ -1,3 +1,4 @@
+
 package com.zadscience.springsoap;
 
 import com.zadscience.springsoap.gen.ConfirmDeliveryRequest;
@@ -29,10 +30,9 @@ public class OrderfulfilmentEndpoint {
     public GetDeliveryResponse confirmDelivery(@RequestPayload ConfirmDeliveryRequest request) {
         DeliveryConfirmation deliveryConfirmation = null;
         GetDeliveryResponse response = new GetDeliveryResponse();
-        deliveryConfirmation = orderfulfilmentRepository.findDeliveryConfirmation(request.getName());
+        deliveryConfirmation = orderfulfilmentRepository.findDeliveryConfirmation(request.getOrderNumber());
         response.setDeliveryConfirmation(deliveryConfirmation);
         return response;
     }
-
 
 }

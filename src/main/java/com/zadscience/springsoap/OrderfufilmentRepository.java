@@ -53,10 +53,7 @@ public class OrderfufilmentRepository {
         shipper.setShippingDate(DatatypeFactory.newInstance().
                 newXMLGregorianCalendar(tnow));
         deliveryOne.setShipper(shipper);
-
         confirmations.put(deliveryOne.getTrackingNumber(), deliveryOne);
-
-
 
 
     }

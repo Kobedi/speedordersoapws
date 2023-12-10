@@ -5,7 +5,7 @@
     <xs:element name="confirmDeliveryRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string"/>
+                <xs:element name="trackingNumber" type="xs:string"/>
                 <xs:element name="orderNumber" type="xs:string"/>
             </xs:sequence>
         </xs:complexType>
